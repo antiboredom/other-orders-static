@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Other Orders</title>
+  <meta name="description" content="A tool for sorting text" />
+  <meta name="author" content="Sam Lavigne" />
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Other Orders">
+  <meta name="twitter:description" content="A tool for sorting text">
+  <meta name="twitter:image" content="https://otherorders.net/static/share.png">
+  <meta property="og:title" content="Other Orders" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://otherorders.net" />
+  <meta property="og:image" content="https://otherorders.net/static/share.png">
+  <meta property="og:description" content="A tool for sorting text" />
+
+  <link rel="stylesheet" href="/static/style.css?v=1.0" />
+</head>
+
+<body>
+  <div class="container welcome">
+    <h1>Other Orders</h1>
+    <p>Other Orders is a tool for sorting text and tweets.</p>
+
+    <p>
+    Recommendation engines like the ones powering the endless feeds on Twitter, Facebook and YouTube, are designed to maximize ad revenue, and therefore to keep you online for as long as possible. In doing so they promote the most reactionary content on their platforms. Yet, these recommendation systems are nothing more than sorting mechanisms.</p><p> Other Orders provides an alternate set of sorts, optimized for other outcomes.
+    </p>
+
+    <p class="actions">
+      <a href="#" id="trytwitter" class="disabled buttony try-twitter">Try Other Orders On Your Twitter Feed</a>
+      <a href="https://github.com/antiboredom/other-orders" class="buttony download">Download Other Orders</a>
+    </p>
+
+
+   <!--  <p>The following sorts are available:</p> -->
+    <div id="sorts-and-texts">
+      <p>As an example, here are some sorts from books listed on Project Gutenberg's top 100 most downloaded ebooks.</p>
+
+      <select @change="switchBook" id="booktitles" v-model="selectedBook" style="width:100%;font-size: order-width:3px;">
+        <option v-for="book in toptens" :value="book.title"><% book.title %></option>
+      </select>
+
+      <p id="sorts-list">
+        <button v-for="sort in sorts" :class="{sorter: true, selected: sort==sorter}" @click="switchSort(sort, $event)">
+          <% sort.display %>
+        </button>
+      </p>
+      <div id="textsssssss">
+        <h3 style=""><span style=""><% sorter.orders[1] %> <% sorter.display %></span> in <% currentBook.title %></h4>
+        <ol>
+          <li v-for="item in currentList"><% item %></li>
+        </ol>
+      </div>
+    </div>
+
+
+    <hr style="clear: both">
+
+
+    <h2 style="margin-top: 20px;">Sorting Methodology</h2>
+    <p><b class="key">Alphabetical:</b> Items are put into lower case and then ordered alphabetically, from A to Z. </p>
+    <p><b class="key">Alphabetical by Username:</b> Items are ordered alphabetically, by the name of the their author. </p>
+    <p><b class="key">Antisemitism as It Is Understood by the Right:</b> Items are ordered by a particular definition of antisemitism, as determined by the item's "negativity" ranking from NLTK's sentiment analysis tool, coupled with occurrences of the word "Israel." That is, if the item has negative sentiment and also contains the word Israel, it is deemed antisemitic.</p>
+    <p><b class="key">Apocalyptic:</b> Items are ordered relative to how intensely they refer to global catastrophe.</p>
+    <p><b class="key">Approximate Quantity of Shame Expressed:</b> Items are ordered relative to their semantic similarity to the phrases that express remorse, regret, shame and embarrassment </p>
+    <p><b class="key">Chronological:</b> Items are ordered by date created. </p>
+    <p><b class="key">Cop-Like:</b> Items are ordered by how confidently they can be classified as phrases written by NYPD Commissioner Bratton. </p>
+    <p><b class="key">Crudely Understood Marxism:</b> Items are ordered relative to their semantic similarity to the phrase "workers must seize the means of production." </p>
+    <p><b class="key">Density of Adjectives:</b> Items are ordered by quantity of adjectives as a percentage of total words. </p>
+    <p><b class="key">Density of Nouns:</b> Items are ordered by quantity of nouns, singular or plural, as a percentage of total words. </p>
+    <p><b class="key">Density of People, Places, Brands, Monetary Values and Dates:</b> Items are ordered by quantity of "named entities", words or phrases which may be proper nouns, monetary values or dates. </p>
+    <p><b class="key">Density of Verbs:</b> Items are ordered by quantity of verbs, of any conjugation, as a percentage of total words. </p>
+    <p><b class="key">Eroticism as an Approximation of Similarity to a Phrase by Anaïs Nin:</b> Items are ordered relative to their semantic similarity to the following passage by Anaïs Nin:</b> "They ceased to be three bodies. They became all mouths and fingers and tongues and senses." </p>
+    <p><b class="key">Exclamatory:</b> Items are ordered by how how many exclamation marks and upper case characters they contain.</p>
+    <p><b class="key">Gothness:</b> Items are ordered by how confidently they can be classified as tweets posted by <a href="https://twitter.com/sosadtoday/">@sosadtoday</a>. </p>
+    <p><b class="key">Kafkaesque-ness:</b> Items are ordered relative to their semantic similarity to a phrase which is a distilled and inadequate interpretation of Kafka's writing:</b> "Hope exists, but not for us. My father judges me."</p>
+    <p><b class="key">Length of Text:</b> Items are ordered by total number of characters in text, including spaces. </p>
+    <p><b class="key">Neoliberalism as Determined by Proximity to Famous Neoliberals:</b> Items are ordered by their similarity to tweets by Third Way Democrats. </p>
+    <p><b class="key">Number of Numbers:</b> Items are ordered by quantity of numbers as a percentage of total words. </p>
+    <p><b class="key">Percentage of Words Which Are Filler Words:</b> Items are ordered by quantity of "stop words", or words which are typically ignored by natural language processing systems. </p>
+    <p><b class="key">Quantity of Gendered Words:</b> Items are ordered by total quantity of gendered words such as "he", "she", and "actress". </p>
+    <p><b class="key">Questioning</b> Items are ordered by how many question marks they contain.</p>
+    <p><b class="key">Similarity to @dril I.E. "drilism":</b> Items are ordered by "drilism", or by how closely they resemble tweets by <a href="https://twitter.com/dril">@dril</a>. </p>
+    <p><b class="key">Similarity to Values Expressed in TED Talks:</b> Items are ordered relative to their semantic similarity to a sentiment expressed regularly by Silicon Valley and its apologists.</p>
+    <p><b class="key">Total All-Time Posts from User:</b> Items are ordered by how many posts their author has made over all time. </p>
+    <p><b class="key">Total Emoji:</b> Items are ordered by how many emoji they contain, as determined by the regular expression "[\U00010000-\U0010ffff]". </p>
+    <p><b class="key">Total Favorites:</b> Items are ordered by total favorites they have received. </p>
+    <p><b class="key">Total Hashtags:</b> Items are ordered by total number of hashtags. </p>
+    <p><b class="key">Total Retweets:</b> Items are ordered by total retweets they have received.</p>
+    <p><b class="key">Use of Language Similar to Language Used by Corporate Social Media Accounts Such as Amazon:</b> Items are ordered by their similarity to tweets by Amazon's corporate account. </p>
+
+    <hr>
+
+    <p>Other Orders is by <a href="https://lav.io">Sam Lavigne</a>, made for the <a href="http://webresidencies-solitude-zkm.com/">Akademie Schloss Solitude / ZKM web residency program</a>.</p>
+  </div>
+
+
+  <script src="/static/vue.js"></script>
+  <script src="/static/app.js"></script>
+</body>
+
+</html>
