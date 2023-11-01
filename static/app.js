@@ -379,6 +379,6 @@ let frontPage = new Vue({
 
 document.querySelector("#trytwitter").addEventListener("click", (e) => {
 	e.preventDefault();
-	alert("Unfortunately, this functionaility has been disabled by Elon Musk.");
+	alert("Unfortunately, this functionality has been disabled by Elon Musk.");
 	return false;
 });
